@@ -1,0 +1,17 @@
+/* OverviewComponent.css */
+.overview-section {
+    margin: 1rem;
+  }
+  
+  .overview-item {
+    transition: transform 0.3s ease-in-out;
+    padding: 1rem;
+  }
+  
+  .overview-item:hover {
+    transform: scale(1.05);
+  }
+  
+  .overview-icon {
+    margin-bottom: 0.5rem;
+  }

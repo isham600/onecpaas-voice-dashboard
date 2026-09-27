@@ -1,0 +1,31 @@
+.container {
+    @apply max-w-md mx-auto p-4;
+  }
+  
+  .nav {
+    @apply flex justify-between items-center mb-4;
+  }
+  
+  .nav ul {
+    @apply flex flex-wrap list-none mb-0;
+  }
+  
+  .nav li {
+    @apply mr-4;
+  }
+  
+  .nav a {
+    @apply flex items-center text-gray-600 hover:text-gray-900 transition duration-300 ease-in-out;
+  }
+  
+  .nav a:hover {
+    @apply text-gray-900;
+  }
+  
+  .nav .active a {
+    @apply border-b-2 border-blue-500 pb-2;
+  }
+  
+  .content {
+    @apply p-4;
+  }

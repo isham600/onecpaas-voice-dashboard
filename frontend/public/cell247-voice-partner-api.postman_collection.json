@@ -1,0 +1,104 @@
+{
+  "info": {
+    "name": "cell247 Voice Partner API",
+    "description": "Submit voice broadcast campaigns and receive delivery status webhooks programmatically. Authenticate with your API token — generate one from Dashboard > API Configuration.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [{ "key": "token", "value": "{{api_token}}", "type": "string" }]
+  },
+  "variable": [
+    { "key": "base_url", "value": "https://webpush.onecpaas.com" },
+    { "key": "api_token", "value": "" },
+    { "key": "request_id", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Submit Campaign (create)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"broadcast_name\": \"My First Campaign\",\n  \"audio_url\": \"https://example.com/audio.mp3\",\n  \"contacts\": [\"919111991707\", \"919111991708\"],\n  \"voiceplan\": \"15\",\n  \"total_contacts\": 2\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/voice/partner/submit",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "voice", "partner", "submit"]
+        },
+        "description": "Creates a new campaign. Returns request_id — save it to submit further batches or check status. total_contacts is optional and only used for progress tracking, not billing."
+      }
+    },
+    {
+      "name": "Submit Campaign (append batch)",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"tracking_id\": \"{{request_id}}\",\n  \"contacts\": [\"919111991709\", \"919111991710\"]\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/voice/partner/submit",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "voice", "partner", "submit"]
+        },
+        "description": "For large campaigns (recommended in batches of ~3000 contacts): pass the request_id from the create call as tracking_id. Only contacts is needed — audio, broadcast_name, retries etc. are inherited from the original campaign. Every call bills only for the contacts it actually sends."
+      }
+    },
+    {
+      "name": "Get Campaign Report",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/api/v1/voice/partner/report?request_id={{request_id}}",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "voice", "partner", "report"],
+          "query": [{ "key": "request_id", "value": "{{request_id}}" }]
+        },
+        "description": "Returns a status breakdown (counts per status: ANSWERED, NO ANSWER, BUSY, FAILED, etc.) for one campaign."
+      }
+    },
+    {
+      "name": "Register Webhook",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"url\": \"https://your-server.com/webhook/voice-status\"\n}"
+        },
+        "url": {
+          "raw": "{{base_url}}/api/v1/voice/partner/webhook",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "voice", "partner", "webhook"]
+        },
+        "description": "Registers (or updates) the URL that receives real-time call status updates. Re-registering overwrites the previous URL — there is only one active webhook per account."
+      }
+    },
+    {
+      "name": "Get Current Webhook",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "{{base_url}}/api/v1/voice/partner/webhook",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "voice", "partner", "webhook"]
+        }
+      }
+    },
+    {
+      "name": "Disable Webhook",
+      "request": {
+        "method": "DELETE",
+        "url": {
+          "raw": "{{base_url}}/api/v1/voice/partner/webhook",
+          "host": ["{{base_url}}"],
+          "path": ["api", "v1", "voice", "partner", "webhook"]
+        }
+      }
+    }
+  ]
+}

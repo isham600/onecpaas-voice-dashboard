@@ -1,0 +1,59 @@
+/* Global Flexbox Container */
+.flex-container {
+      display: flex;
+      flex-wrap: wrap; /* Allows panels to wrap if needed */
+      align-items: center; /* Ensures vertical alignment */
+      justify-content: space-between; /* Distributes space evenly */
+    }
+    
+    /* Left Panel: WYSIWYG Content */
+    .wysiwyg-content {
+      flex: 2; /* Takes more space compared to the login panel */
+      max-width: 600px; /* Optionally limit the width */
+      color: white;
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+      text-align: left;
+    }
+    
+    /* Right Panel: Login */
+    .login-panel {
+      flex: 1; /* Takes less space compared to the wysiwyg content */
+      min-width: 400px; /* Ensures it doesn’t shrink below this width */
+      max-width: 500px; /* Optionally set a maximum width *//* Optional: Darken login panel for readability */
+      padding: 20px; /* Add padding inside the login box */
+      border-radius: 8px; /* Add rounded corners */
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .flex-container {
+        flex-direction: column; /* Stack panels vertically */
+      }
+    
+      .login-panel, .wysiwyg-content {
+        width: 100%; /* Occupy full width of the container */
+        min-width: unset; /* Remove minimum width for smaller screens */
+      }
+    }
+    
+    /* Global WYSIWYG Styles */
+    .wysiwyg-content ul {
+      list-style: disc; /* Ensure bullet points appear */
+      padding-left: 1.5rem; /* Add padding for indentation */
+    }
+    
+    .wysiwyg-content ul li {
+      margin-bottom: 0.5rem; /* Add spacing between list items */
+    }
+    
+    .wysiwyg-content {
+      color: white; /* Ensure text is visible */
+      word-wrap: break-word; /* Prevent long text from breaking layout */
+      overflow-wrap: break-word;
+      max-width: 500px; /* Consistent width for left panel */
+      min-height: 300px; /* Consistent height for layout */
+      font-family: inherit; /* Use the inherited font styles */
+      text-align: left;
+    }
+    

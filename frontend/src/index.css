@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  @keyframes wave {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+  .animate-wave {
+    animation: wave 5s infinite ease-in-out;
+  }
+}
+@layer utilities {
+  .shadow-glow {
+    box-shadow: 0 0 15px rgba(0, 136, 255, 0.6);
+  }
+}
+
+@layer utilities {
+  .shadow-neumorphism {
+    box-shadow: 8px 8px 16px #d1d9e6, -8px -8px 16px #ffffff;
+  }
+  .shadow-neumorphism-inset {
+    box-shadow: inset 4px 4px 8px #d1d9e6, inset -4px -4px 8px #ffffff;
+  }
+}
+
+/* Global styles or in your main CSS file */
+html {
+  font-size: 80%; /* Adjust this to globally reduce the size */
+}
+
+/* Use rem or em for elements throughout your app */
+body {
+  font-size: 1rem; /* 1rem will now be based on 90% of the default font size */
+}
+
+.component {
+  padding: 2rem; /* 2rem is now relative to the new global font size */
+  margin: 1rem;
+}
+/* In your CSS or SCSS */
+@media (max-width: 1200px) {
+  html {
+    font-size: 90%;
+  }
+}
+/* Mulish is self-hosted via @fontsource/mulish (imported in App.jsx) */
+
+@media (max-width: 768px) {
+  html {
+    font-size: 85%;
+  }
+}
+
+/* src/index.css or src/global.css */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-sans text-xl; /* Applying the custom default font and size */
+}
+
+p {
+  @apply font-serif text-base; /* Custom paragraph font and size */
+}
+
+button {
+  @apply font-sans text-sm; /* Buttons with smaller font size */
+}
+
+.login {
+  background: url("/assets/images/png/bg-3.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.mobile-ui {
+  background: url("/assets/images/png/mobile-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none; /* Safari and Chrome */
+}
+
+/* Handle with "+" icon */
+.handle-plus {
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #b1b1b1bc;
+  color: white;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 18px;
+  font-weight: bolder;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: background 0.2s ease-in-out;
+}
+
+.handle-plus:hover {
+  background: #8b8b8b;
+}
+
+@keyframes dashmove {
+  to {
+    stroke-dashoffset: -22;
+  }
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #2c2c2c, #9e9898, #2c2c2c);
+  background-size: 1800% 200%;
+  animation: gradientShift 4s infinite alternate ease-in-out;
+}
+
+.message-content {
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
+
+/* ADD by SHUBHAM: Custom styling for Under Development component */
+.not-found {
+  @apply flex flex-col justify-center items-center h-screen text-center;
+}
+
+.not-found img {
+  @apply w-1/2 max-w-sm mb-4;
+}
+
+.not-found h1 {
+  @apply text-4xl mb-4;
+}
+
+.not-found p {
+  @apply text-lg mb-6;
+}
+
+.not-found a {
+  @apply text-blue-500 hover:underline text-lg;
+}

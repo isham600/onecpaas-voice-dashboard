@@ -1,0 +1,25 @@
+.env
+node_modules/
+dist/
+logs/
+*.log
+.DS_Store
+.vscode/
+.idea/
+
+# Deploy output — transfer to client server manually, not via git
+deploy/
+.build-temp/
+
+# License tools — NEVER commit or deploy these
+license-tools/private.pem
+license-tools/license-*.json
+
+# Client license file — placed on server manually, not in repo
+license.json
+
+# Docs / internal notes — not part of the delivered source
+*.md
+docs/
+postman/
+uploads/
